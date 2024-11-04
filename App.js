@@ -1,23 +1,30 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import RootNavigator from "./navigation/RootNavigator";
-import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
 import { Provider as PaperProvider } from "react-native-paper";
 import { ThemeProvider, useTheme } from "./components/ThemeContext";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { NavigationContainer } from "@react-navigation/native";
+import RootNavigator from "./navigation/RootNavigator";
+import { StatusBar } from "react-native-web";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <RootNavigator />
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <ThemeProvider>
+        <Main />
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+function Main() {
+  const { theme } = useTheme(); // Accessing the theme from context
+
+  return (
+    <PaperProvider theme={theme}>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+      <StatusBar style="auto" />
+    </PaperProvider>
+  );
+}

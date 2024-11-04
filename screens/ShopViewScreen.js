@@ -1,11 +1,12 @@
 import React from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, Button, StyleSheet } from 'react-native'
+import { Surface, Text } from 'react-native-paper';
 
 export default function ShopViewScreen(props) {
   return (
-    <View style={styles.container}>
+    <Surface style={styles.container}>
       <Text  style={styles.text}>Shop View Screen</Text>
-    </View>
+    </Surface>
   )
 }
 
